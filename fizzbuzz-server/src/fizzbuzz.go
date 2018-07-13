@@ -1,25 +1,24 @@
 package main
 
 import (
-    "fmt"
-    "net/http"
-    "github.com/gorilla/mux"
+	"fmt"
+	"net/http"
 	"strconv"
+	"sync"
+	"github.com/gorilla/mux"
 )
 
 // PrintFizzBuzz : Sends request to GoRoutine to do the fizz and buzzes
 func PrintFizzBuzz(writer http.ResponseWriter, reader *http.Request) {
-    params := mux.Vars(reader)
+	params := mux.Vars(reader)
 
-    max, err := strconv.ParseInt(params["max"], 10, 64)
-    if(err != nil) {
-        writer.WriteHeader(http.StatusBadRequest)
-        writer.Write([]byte(err.Error()))
-    }
-	
-    for channel := range FizzBuzz(max) {
-		writer.Write([]byte(channel))
-    }
+	max, err := strconv.ParseInt(params["max"], 10, 64)
+	if err != nil {
+		writer.WriteHeader(http.StatusBadRequest)
+		writer.Write([]byte(err.Error()))
+	}
+
+	writer.Write([]byte(FizzBuzz(max)))
 }
 
 // FizzBuzz : Computes Fizzes and Buzzes

@@ -14,20 +14,19 @@ Do a git clone from this repo (preferable to your $GOPATH\src) or set GOPATH exp
 ```
 git clone https://github.com/ashwathps/gofizzbuzz.git
 
-cd $GOPATH/src/fizzbuzz-server/src
+cd $GOPATH/src/gofizzbuzz/fizzbuzz-server/src
 
 ```
 Then run
 
-` got get -v -t .` to get and resolve all package deps
+` go get -v -t .` to get and resolve all package deps
 
 ### Building & Running
 
 ```
-cd src
 go build server.go fizzbuzz.go
 
-./server.go
+./server
 
 ```
 

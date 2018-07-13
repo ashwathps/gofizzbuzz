@@ -29,8 +29,8 @@ func FizzBuzz(max int64) <-chan string {
 	go func() {
 		for i:= int64(1); i <= max; i++ {
 			iter := ""
-			if i % 5 == 0 { iter += "Buzz" }
 			if i % 3 == 0 { iter += "Fizz" }
+			if i % 5 == 0 { iter += "Buzz" }
 			if iter == "" {
 				results <- fmt.Sprintf("%d", i) + "\n" 
 			}else{

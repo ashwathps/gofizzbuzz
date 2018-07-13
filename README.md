@@ -2,19 +2,31 @@
 A simple fizz buzz served hot from REST
 
 
-## Setup
+### Setup
 
-Do ao git clone
+Do a git clone from this repo (preferable to your $GOPATH\src)
 
-Preferbaly to a $GOPATH\src
+```
+git clone https://github.com/ashwathps/gofizzbuzz.git
 
-Run ` got get -v -t .` to get and resolve package deps
+cd fizzbuzz-server
 
-## Running
+```
+Then run
 
+` got get -v -t .` to get and resolve all package deps
 
+### Building & Running
 
-## Tests
+```
+cd src
+go build server.go fizzbuzz.go
+
+./server.go
+
+```
+
+### Tests
 The code uses golang's default testing framework
 
-Run ` got test -run `
+Run ` go test -run TestFizzBuzz15`

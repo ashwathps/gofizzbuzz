@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+    "fmt"
     "net/http"
     "github.com/gorilla/mux"
 	"strconv"
@@ -15,11 +15,11 @@ func PrintFizzBuzz(writer http.ResponseWriter, reader *http.Request) {
     if(err != nil) {
         writer.WriteHeader(http.StatusBadRequest)
         writer.Write([]byte(err.Error()))
-	}
+    }
 	
-	for channel := range FizzBuzz(max) {
+    for channel := range FizzBuzz(max) {
 		writer.Write([]byte(channel))
-	}
+    }
 }
 
 // FizzBuzz : Computes Fizzes and Buzzes

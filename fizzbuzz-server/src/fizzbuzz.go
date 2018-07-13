@@ -23,21 +23,30 @@ func PrintFizzBuzz(writer http.ResponseWriter, reader *http.Request) {
 }
 
 // FizzBuzz : Computes Fizzes and Buzzes
-func FizzBuzz(max int64) <-chan string {
-	results := make(chan string, max)
+func FizzBuzz(max int64) string {
+	results := ""
+	var wg sync.WaitGroup
+
+	wg.Add(1)
 
 	go func() {
-		for i:= int64(1); i <= max; i++ {
+		for i := int64(1); i <= max; i++ {
 			iter := ""
-			if i % 3 == 0 { iter += "Fizz" }
-			if i % 5 == 0 { iter += "Buzz" }
+			if i%3 == 0 {
+				iter += "Fizz"
+			}
+			if i%5 == 0 {
+				iter += "Buzz"
+			}
 			if iter == "" {
-				results <- fmt.Sprintf("%d", i) + "\n" 
-			}else{
-				results <- iter + "\n"
+				results += fmt.Sprintf("%d", i) + "\n"
+			} else {
+				results += iter + "\n"
 			}
 		}
-		close(results)
+		defer wg.Done()
 	}()
+
+	wg.Wait()
 	return results
 }
